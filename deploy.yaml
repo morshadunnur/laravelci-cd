@@ -1,0 +1,25 @@
+import:
+  - recipe/laravel.php
+
+config:
+  application: 'laravelci-cd'
+  repository: 'https://github.com/morshadunnur/laravelci-cd.git'
+
+hosts:
+  prod:
+    remote_user: deploy
+    hostname: '172.104.178.182'
+    deploy_path: '/var/www/html/{{application}}'
+
+tasks:
+  build:
+    - cd: '{{release_path}}'
+    - run: 'npm run build'
+  nginx:restart:
+    - run: 'service nginx restart'
+  php-fpm:reload:
+    - run: 'service php8.0-fpm reload'
+
+after:
+  deploy:failed: deploy:unlock
+  nginx:restart: php-fpm:reload
