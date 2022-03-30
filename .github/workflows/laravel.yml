@@ -47,5 +47,7 @@ jobs:
           ssh-add - <<< "${DEPLOY_KEY}"
           mkdir ~/.ssh
           echo -e "HostName cicd.morshadunnur.me\n\tStrictHostKeyChecking no\n\t"User deploy >> ~/.ssh/config
-          composer install
-          vendor/bin/dep deploy
+      - name: Composer Install
+        run: composer install
+      - name: Deploying
+        run: vendor/bin/dep deploy
