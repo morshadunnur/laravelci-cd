@@ -46,7 +46,7 @@ jobs:
           eval "$(ssh-agent -s)"
           ssh-add - <<< "${DEPLOY_KEY}"
           mkdir ~/.ssh
-          echo -e "HostName 172.104.178.182n\tStrictHostKeyChecking no\n\t"User deploy >> ~/.ssh/config
+          echo -e "HostName cicd.morshadunnur.men\tStrictHostKeyChecking no\n\t"User deploy >> ~/.ssh/config
       - name: Composer Install
         run: composer install
       - name: Deploying
