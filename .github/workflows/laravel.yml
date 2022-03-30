@@ -50,4 +50,4 @@ jobs:
       - name: Composer Install
         run: composer install
       - name: Deploying
-        run: vendor/bin/dep deploy
+        run: vendor/bin/deployer.phar deploy
